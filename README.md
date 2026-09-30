@@ -95,7 +95,7 @@ npm run preview   # Preview the production build locally
 
 ## eBay listings widget
 
-The live listing feed is mounted client-side in `EbayWidget` inside `src/App.jsx`. It uses:
+The live listing feed is mounted client-side in `EbayWidget` inside `src/App.jsx`. The browser requests the feed through the same-origin Vercel function at `api/listings.js`, which avoids common browser content blockers while keeping the provider's live content and disclosure. It uses:
 
 - eBay user: `poke_otter`
 - eBay site: `EBAY-GB`
@@ -103,7 +103,7 @@ The live listing feed is mounted client-side in `EbayWidget` inside `src/App.jsx
 - Maximum items: 100
 - Provider: Auction Nudge
 
-The external script writes into the single `auction-nudge-items` element and injects its own markup and styles. Do not add a second listings widget to the page. The provider warns that duplicate instances of the same widget can stop both widgets from loading.
+The external script writes into the single `auction-nudge-items` element and injects its own markup and styles. Do not add a second listings widget to the page. The provider warns that duplicate instances of the same widget can stop both widgets from loading. The proxy is restricted to the Auction Nudge item feed and caches responses for 15 minutes.
 
 The widget is third-party content and may be affected by network failures or ad blockers. The page therefore includes direct links to the full eBay shop as fallbacks. Listing prices, availability, feedback, and shipping details must remain live on eBay rather than being copied into static page content.
 
@@ -112,9 +112,9 @@ The widget is third-party content and may be affected by network failures or ad 
 1. Import the repository into Vercel.
 2. Keep the framework preset as Vite, or use the detected defaults.
 3. Set the `VITE_FORMSPREE_ENDPOINT` environment variable.
-4. Deploy with the build command `npm run build` and output directory `dist`.
+4. Deploy with the build command `npm run build` and output directory `dist`. Vercel automatically deploys the `api/` serverless function alongside the frontend.
 
-No `vercel.json` is required for this static Vite site. The canonical production URL is `https://pokeotter.jaamour.com/`.
+No `vercel.json` is required. The canonical production URL is `https://pokeotter.jaamour.com/`.
 
 ## Content maintenance
 

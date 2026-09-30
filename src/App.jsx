@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from 'react'
 
 const EBAY_URL = 'https://www.ebay.co.uk/usr/poke_otter'
+const AUCTION_NUDGE_PATH =
+  'theme/unstyled/img_size/500/show_logo/0/SellerID/poke_otter/siteid/3/MaxEntries/100/page/init'
 const AUCTION_NUDGE_URL =
-  'https://www.auctionnudge.com/feed/item/js/theme/unstyled/img_size/500/show_logo/0/SellerID/poke_otter/siteid/3/MaxEntries/100/page/init'
+  `/api/listings?path=${encodeURIComponent(AUCTION_NUDGE_PATH)}`
+const AUCTION_NUDGE_TIMEOUT = 10000
 const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT || ''
 
 function ArrowUpRight() {
@@ -38,11 +41,22 @@ function EbayWidget() {
     if (!container) return undefined
 
     let active = true
+    let timeoutId
     const previousCallback = window.auction_nudge_loaded
+
+    function setWidgetStatus(nextStatus) {
+      if (!active) return
+      window.clearTimeout(timeoutId)
+      setStatus(nextStatus)
+    }
+
     window.auction_nudge_loaded = (data) => {
       if (!active) return
-      previousCallback?.(data)
-      if (!data || data.target_div_id === 'auction-nudge-items') setStatus('ready')
+      try {
+        previousCallback?.(data)
+      } finally {
+        if (!data || data.target_div_id === 'auction-nudge-items') setWidgetStatus('ready')
+      }
     }
 
     const script = document.createElement('script')
@@ -50,19 +64,22 @@ function EbayWidget() {
     script.src = AUCTION_NUDGE_URL
     script.async = true
     script.onerror = () => {
-      if (active) setStatus('error')
+      setWidgetStatus('error')
     }
-    container.appendChild(script)
-
     // Auction Nudge normally waits for window.load. Handle a late mount too.
     script.onload = () => {
       if (active && document.readyState === 'complete' && window.AN_Item_items?.ready) {
         window.AN_Item_items.ready()
       }
     }
+    timeoutId = window.setTimeout(() => {
+      setWidgetStatus('error')
+    }, AUCTION_NUDGE_TIMEOUT)
+    container.appendChild(script)
 
     return () => {
       active = false
+      window.clearTimeout(timeoutId)
       if (window.auction_nudge_loaded === previousCallback) {
         delete window.auction_nudge_loaded
       } else {
@@ -87,7 +104,7 @@ function EbayWidget() {
       </div>
       {status === 'error' && (
         <div className="widget-fallback">
-          <p>The live listing feed is taking a breather.</p>
+          <p>The live listing feed could not load in this browser.</p>
           <a className="text-link" href={EBAY_URL} target="_blank" rel="noreferrer">
             Browse the shop directly on eBay <ArrowUpRight />
           </a>
