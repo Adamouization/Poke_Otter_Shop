@@ -39,11 +39,11 @@ Always run `npm run build` after source, configuration, dependency, or metadata 
 
 ## eBay widget constraints
 
-The Free Seller Tools script is loaded client-side because it writes directly into the DOM. Keep the single `fst_listings` mount point and do not use `dangerouslySetInnerHTML` for the external script.
+Auction Nudge's unstyled feed is loaded client-side because it writes directly into the DOM. Keep the single `auction-nudge-items` mount point and do not use `dangerouslySetInnerHTML` for the external script.
 
-The current widget uses one grid feed with a maximum of 100 listings. Responsive columns are controlled by local CSS because the provider's injected styles do not reliably enforce the desired row count. Do not embed a second copy of the same listings widget on the page.
+The current widget uses one feed with a maximum of 100 listings. Responsive columns are controlled by local CSS because the provider's unstyled feed has no layout styles. Do not embed a second copy of the same listings widget on the page.
 
-The provider's disclosure text and redirect behavior are external content. Do not remove or misrepresent it.
+The provider's advertising disclosure and redirect behavior are external content. Do not remove or misrepresent it.
 
 ## Formspree configuration
 

@@ -163,29 +163,33 @@ h2 { margin-bottom: 18px; font-size: clamp(42px, 5vw, 68px); line-height: 0.98; 
 
 @keyframes spin { to { transform: rotate(360deg); } }
 
-#fst_listings .ebay_items-header { display: none !important; }
+#auction-nudge-items .an-item-wrap { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
 
-#fst_listings .items_container { padding: 0 !important; border: 0 !important; background: transparent !important; }
+#auction-nudge-items .item { display: flex; min-width: 0; flex-direction: column; margin: 0; padding: 13px 13px 17px; border: 1px solid var(--line); border-radius: 13px; background: var(--paper); list-style: none; transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease; }
 
-#fst_listings .disclosure { margin: 0 0 22px !important; padding: 11px 14px; border: 1px solid rgba(55, 117, 169, 0.2); border-radius: 9px; color: var(--ink-soft); background: #edf4f8; font-size: 11px; line-height: 1.5; }
+#auction-nudge-items .item:hover { border-color: var(--red); box-shadow: 0 8px 0 rgba(227, 82, 80, 0.16); transform: translateY(-3px); }
 
-#fst_listings .disclosure .ad { margin-right: 5px; padding: 2px 5px; border: 0; border-radius: 4px; color: var(--paper); background: var(--blue); font-size: 9px; letter-spacing: 0.08em; text-transform: uppercase; }
+#auction-nudge-items .item .image { display: flex; width: 100%; height: 190px; margin: 0 0 15px; align-items: center; justify-content: center; border-radius: 7px; background: #f6f3ee; }
 
-#fst_listings .fst_container { display: grid !important; grid-template-columns: repeat(4, minmax(0, 1fr)) !important; gap: 18px !important; }
+#auction-nudge-items .item .image-container { display: flex; width: 100%; height: 100%; align-items: center; justify-content: center; }
 
-#fst_listings .fst_col { display: flex; min-width: 0; flex-direction: column; padding: 13px 13px 17px; border: 1px solid var(--line); border-radius: 13px; background: var(--paper); text-align: left !important; transition: border-color 180ms ease, transform 180ms ease, box-shadow 180ms ease; }
+#auction-nudge-items .item .image-container > a { display: flex; width: 100%; height: 100%; align-items: center; justify-content: center; }
 
-#fst_listings .fst_col:hover { border-color: var(--red); box-shadow: 0 8px 0 rgba(227, 82, 80, 0.16); transform: translateY(-3px); }
+#auction-nudge-items .item .image img { width: auto; height: auto; max-width: 100%; max-height: 100%; border-radius: 7px; object-fit: contain; }
 
-#fst_listings .fst_col img { width: 100%; height: 190px; max-height: none !important; margin: 0 0 15px !important; border-radius: 7px; background: #f6f3ee; object-fit: contain; }
+#auction-nudge-items .item .title { flex: 1; margin: 0 0 12px; font-size: 13px; line-height: 1.4; }
 
-#fst_listings .product-title { flex: 1; margin: 0 0 12px !important; font-size: 13px; line-height: 1.4; }
+#auction-nudge-items .item .title a { color: var(--ink); }
 
-#fst_listings .product-title a { color: var(--ink); }
+#auction-nudge-items .item .title a:hover { color: var(--red-dark); }
 
-#fst_listings .product-title a:hover { color: var(--red-dark); }
+#auction-nudge-items .item .price { color: var(--red-dark); font-size: 15px; font-weight: 700; }
 
-#fst_listings .product-price { color: var(--red-dark); font-size: 15px; font-weight: 700; }
+#auction-nudge-items .item .price small, #auction-nudge-items .item .format { display: none; }
+
+#auction-nudge-items .an-page-wrap { display: flex; justify-content: space-between; margin: 22px 0 0; padding: 0; list-style: none; color: var(--red-dark); font-size: 12px; font-weight: 700; }
+
+#auction-nudge-items .an-page-wrap .an-inactive { color: var(--paper-deep); }
 
 .widget-fallback { padding: 45px 20px; border: 1px dashed var(--line); border-radius: 12px; color: var(--ink-soft); text-align: center; }
 
@@ -320,7 +324,7 @@ h2 { margin-bottom: 18px; font-size: clamp(42px, 5vw, 68px); line-height: 0.98; 
 @media (max-width: 1040px) {
   .hero-section { grid-template-columns: 1fr minmax(360px, 0.8fr); }
   .main-nav { margin-left: 0; }
-  #fst_listings .fst_container { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+  #auction-nudge-items .an-item-wrap { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .care-intro, .faq-layout, .contact-section { gap: 65px; }
 }
 
@@ -346,11 +350,11 @@ h2 { margin-bottom: 18px; font-size: clamp(42px, 5vw, 68px); line-height: 0.98; 
   .section-heading, .care-intro, .faq-layout, .contact-section { display: block; }
   .section-heading .text-link { margin-top: 22px; }
   .widget-frame { padding: 12px; border-radius: 15px; }
-  #fst_listings .fst_container { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 10px !important; }
-  #fst_listings .fst_col { padding: 8px 8px 12px; border-radius: 9px; }
-  #fst_listings .fst_col img { height: 135px; margin-bottom: 10px !important; }
-  #fst_listings .product-title { font-size: 11px; }
-  #fst_listings .product-price { font-size: 13px; }
+  #auction-nudge-items .an-item-wrap { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+  #auction-nudge-items .item { padding: 8px 8px 12px; border-radius: 9px; }
+  #auction-nudge-items .item .image { height: 135px; margin-bottom: 10px; }
+  #auction-nudge-items .item .title { font-size: 11px; }
+  #auction-nudge-items .item .price { font-size: 13px; }
   .care-section, .faq-section { padding: 80px 0; }
   .care-art { max-width: 360px; margin-bottom: 55px; }
   .care-copy h2 { max-width: 500px; }
@@ -375,8 +379,8 @@ h2 { margin-bottom: 18px; font-size: clamp(42px, 5vw, 68px); line-height: 0.98; 
   .hero-actions .button { width: 100%; }
   .hero-footnote { align-items: flex-start; flex-wrap: wrap; }
   .hero-footnote span { display: none; }
-  #fst_listings .fst_container { grid-template-columns: 1fr !important; }
-  #fst_listings .fst_col img { height: 190px; }
+  #auction-nudge-items .an-item-wrap { grid-template-columns: 1fr; }
+  #auction-nudge-items .item .image { height: 190px; }
   .form-grid { grid-template-columns: 1fr; gap: 0; }
   .form-actions .button { width: 100%; }
   .contact-form { padding: 22px 17px; }

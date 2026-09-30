@@ -1,8 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 const EBAY_URL = 'https://www.ebay.co.uk/usr/poke_otter'
-const WIDGET_URL =
-  'https://freesellertools.com/load_tool/get_listings.php?user=poke_otter&globalid=EBAY-GB&keyword=&limit=100&design=grid&heading=LATEST%20LISTINGS&items_row=4&items_slide=4&auto_start=false'
+const AUCTION_NUDGE_URL =
+  'https://www.auctionnudge.com/feed/item/js/theme/unstyled/img_size/500/show_logo/0/SellerID/poke_otter/siteid/3/MaxEntries/100/page/init'
 const FORMSPREE_ENDPOINT = import.meta.env.VITE_FORMSPREE_ENDPOINT || ''
 
 function ArrowUpRight() {
@@ -31,22 +31,46 @@ function Spark() {
 
 function EbayWidget() {
   const [status, setStatus] = useState('loading')
+  const mountRef = useRef(null)
 
   useEffect(() => {
-    const container = document.getElementById('fst_listings')
+    const container = mountRef.current
     if (!container) return undefined
+
+    let active = true
+    const previousCallback = window.auction_nudge_loaded
+    window.auction_nudge_loaded = (data) => {
+      if (!active) return
+      previousCallback?.(data)
+      if (!data || data.target_div_id === 'auction-nudge-items') setStatus('ready')
+    }
 
     const script = document.createElement('script')
     script.type = 'text/javascript'
-    script.src = WIDGET_URL
+    script.src = AUCTION_NUDGE_URL
     script.async = true
-    script.onload = () => setStatus('ready')
-    script.onerror = () => setStatus('error')
+    script.onerror = () => {
+      if (active) setStatus('error')
+    }
     container.appendChild(script)
 
+    // Auction Nudge normally waits for window.load. Handle a late mount too.
+    script.onload = () => {
+      if (active && document.readyState === 'complete' && window.AN_Item_items?.ready) {
+        window.AN_Item_items.ready()
+      }
+    }
+
     return () => {
+      active = false
+      if (window.auction_nudge_loaded === previousCallback) {
+        delete window.auction_nudge_loaded
+      } else {
+        window.auction_nudge_loaded = previousCallback
+      }
       script.remove()
-      container.innerHTML = ''
+      const listings = document.getElementById('auction-nudge-items')
+      if (listings) listings.innerHTML = ''
     }
   }, [])
 
@@ -58,7 +82,9 @@ function EbayWidget() {
           <p>Fetching the latest Poke Otter listings...</p>
         </div>
       )}
-      <div id="fst_listings" aria-live="polite" />
+      <div ref={mountRef} aria-live="polite">
+        <div id="auction-nudge-items" className="auction-nudge" />
+      </div>
       {status === 'error' && (
         <div className="widget-fallback">
           <p>The live listing feed is taking a breather.</p>
