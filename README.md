@@ -93,6 +93,8 @@ npm run build     # Create the production build in dist/
 npm run preview   # Preview the production build locally
 ```
 
+The Vite development server also runs the listings and image proxy handlers locally, so `npm run dev` supports the live feed without requiring the Vercel CLI.
+
 ## eBay listings widget
 
 The live listing feed is mounted client-side in `EbayWidget` inside `src/App.jsx`. The browser requests the feed through the same-origin Vercel functions at `api/listings.js` and `api/listing-image.js`, which avoid common browser content blockers while keeping the provider's live content and disclosure. It uses:
