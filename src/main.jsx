@@ -1,12 +1,12 @@
 import { StrictMode } from 'react'
 import { createRoot, hydrateRoot } from 'react-dom/client'
-import App from './App.jsx'
+import SitePage from './SitePage.jsx'
 import './styles.css'
 
 const rootElement = document.getElementById('root')
 const app = (
   <StrictMode>
-    <App />
+    <SitePage pathname={window.location.pathname} />
   </StrictMode>
 )
 

@@ -187,7 +187,7 @@ function App() {
         <section className="hero-section">
           <div className="hero-copy">
             <p className="eyebrow eyebrow--light"><span className="eyebrow-dot" /> eBay UK only</p>
-            <h1>Pokemon cards for UK collectors.</h1>
+            <h1>Pokemon cards for UK collectors</h1>
             <p className="hero-intro">
               Shop pack-fresh Pokemon singles, raw cards, and graded collector finds from Poke Otter. Browse live listings and check out securely through eBay UK.
             </p>
@@ -195,7 +195,7 @@ function App() {
               <a className="button button--cream" href="#shop">Browse latest cards <ArrowDown /></a>
               <a className="button button--ghost" href={EBAY_URL} target="_blank" rel="noreferrer">Go to eBay <ArrowUpRight /></a>
             </div>
-            <div className="hero-footnote"><Spark /> Raw + graded cards <span /> Royal Mail postage</div>
+            <div className="hero-footnote"><Spark /> Raw + graded cards</div>
           </div>
           <div className="hero-art" aria-label="Poke Otter mascot holding a Pokemon card">
             <div className="hero-sun" />
@@ -212,7 +212,6 @@ function App() {
           <span>POKEMON TCG</span><i />
           <span>RAW + GRADED</span><i />
           <span>PACK-FRESH PULLS</span><i />
-          <span>ROYAL MAIL</span><i />
           <span>EBAY UK</span>
         </div>
 
@@ -237,7 +236,7 @@ function App() {
             <div className="care-copy">
               <p className="eyebrow"><span className="eyebrow-dot" /> A little about the shop</p>
               <h2>Good cards deserve good care.</h2>
-              <p>Every raw Pokemon card listed by Poke Otter is pack-fresh, pulled by me, and immediately sleeved. Alongside fresh pulls, you will find graded cards for collectors who like their favourites protected and ready for display.</p>
+              <p>Every raw Pokemon card listed by Poke Otter is pack-fresh, pulled by us, and immediately sleeved. Alongside fresh pulls, you will find graded cards for collectors who like their favourites protected and ready for display.</p>
               <a className="text-link" href={EBAY_URL} target="_blank" rel="noreferrer">Meet the shop on eBay <ArrowUpRight /></a>
             </div>
           </div>
@@ -275,6 +274,34 @@ function App() {
           </div>
         </section>
 
+        <section className="section resource-section" id="guides">
+          <div className="section-heading section-heading--centered">
+            <p className="eyebrow"><span className="eyebrow-dot" /> Helpful collector notes</p>
+            <h2>More ways to find the right card.</h2>
+            <p className="section-lede">Explore the shop by collecting goal, or read a practical guide before you buy.</p>
+          </div>
+          <div className="resource-grid">
+            <a className="resource-card" href="/pokemon-cards-uk/">
+              <span className="resource-card__label">Explore</span>
+              <h3>Raw Pokemon Cards</h3>
+              <p>Browse raw singles, holos, and graded collector finds from Poke Otter on eBay UK.</p>
+              <span className="text-link">View the collection <ArrowUpRight /></span>
+            </a>
+            <a className="resource-card" href="/graded-pokemon-cards-uk/">
+              <span className="resource-card__label">Explore</span>
+              <h3>Graded Pokemon cards</h3>
+              <p>Learn what to check in a graded listing and find display-ready collector pieces.</p>
+              <span className="text-link">See graded cards <ArrowUpRight /></span>
+            </a>
+            <a className="resource-card" href="/guides/raw-vs-graded-pokemon-cards/">
+              <span className="resource-card__label">Guide</span>
+              <h3>Raw vs graded cards</h3>
+              <p>Compare flexibility, protection, presentation, and the details to check before buying.</p>
+              <span className="text-link">Read the guide <ArrowUpRight /></span>
+            </a>
+          </div>
+        </section>
+
         <section className="faq-section" id="faq">
           <div className="section faq-layout">
             <div className="faq-heading">
@@ -290,11 +317,11 @@ function App() {
               </details>
               <details>
                 <summary>How are raw cards handled?<span>+</span></summary>
-                <p>Raw cards are pack-fresh, pulled by me, and immediately sleeved before they are listed.</p>
+                <p>Raw cards are pack-fresh, pulled by us, and immediately sleeved before they are listed.</p>
               </details>
               <details>
                 <summary>How does postage work?<span>+</span></summary>
-                <p>Listings use Royal Mail postage options. The exact service, price, and estimated delivery date are shown on each eBay listing.</p>
+                <p>Small cards worth around £1 are posted via Royal Mail 2nd Class. More valuable raw cards over £10 and graded cards are sent through eBay's Simple Delivery service with its protection guarantee, using tracked Royal Mail 1st Class.</p>
               </details>
               <details>
                 <summary>What about returns?<span>+</span></summary>
@@ -324,6 +351,9 @@ function App() {
         </div>
         <div className="footer-links">
           <a href={EBAY_URL} target="_blank" rel="noreferrer">eBay shop <ArrowUpRight /></a>
+          <a href="/pokemon-cards-uk/">Raw Pokemon Cards</a>
+          <a href="/graded-pokemon-cards-uk/">Graded cards</a>
+          <a href="/guides/raw-vs-graded-pokemon-cards/">Guide</a>
           <a href="#contact">Contact</a>
           <a href="#faq">FAQ</a>
         </div>

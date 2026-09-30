@@ -1,6 +1,6 @@
 import { renderToString } from 'react-dom/server'
-import App from './App.jsx'
+import SitePage from './SitePage.jsx'
 
-export function render() {
-  return renderToString(<App />)
+export function render(pathname = '/') {
+  return renderToString(<SitePage pathname={pathname} />)
 }

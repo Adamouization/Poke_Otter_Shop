@@ -16,6 +16,9 @@ The site is intentionally static. There is no application server, database, auth
 - Responsive layout with reduced-motion support.
 - Prerendered homepage HTML for search crawlers and fast first paint.
 - Canonical URL, sitemap, robots directive, Open Graph, Twitter card, and JSON-LD metadata.
+- Search-focused landing pages for UK Pokemon cards and graded cards.
+- Collector guide comparing raw and graded Pokemon cards.
+- Google Analytics outbound eBay click tracking.
 
 ## Stack
 
@@ -39,8 +42,12 @@ Node 22 is the recommended runtime. The Vite version currently used by this proj
 │   └── sitemap.xml          # Indexable site URLs
 ├── src/
 │   ├── App.jsx              # Page sections, widget, and contact form
+│   ├── ContentPage.jsx      # SEO landing pages and collector guide
+│   ├── AnalyticsTracking.jsx # Google Analytics outbound-link events
 │   ├── entry-server.jsx     # Static prerender entry point
+│   ├── pageData.js           # Page URLs and metadata
 │   ├── main.jsx             # React entry point
+│   ├── SitePage.jsx          # Path-based page selection
 │   └── styles.css           # Complete visual system and responsive styles
 ├── scripts/
 │   └── prerender.mjs        # Injects rendered React HTML into dist/index.html
