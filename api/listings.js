@@ -1,6 +1,8 @@
 const UPSTREAM_ORIGIN = 'https://www.auctionnudge.com'
 const UPSTREAM_PATH = '/feed/item/js'
 const CLIENT_PATH = '/api/listings?path='
+const IMAGE_ORIGIN = 'https://i.ebayimg.com'
+const IMAGE_PATH = '/api/listing-image?path='
 
 export default async function handler(request, response) {
   if (request.method !== 'GET') {
@@ -34,10 +36,9 @@ export default async function handler(request, response) {
       return
     }
 
-    const clientBody = body.replaceAll(
-      `${UPSTREAM_ORIGIN}${UPSTREAM_PATH}`,
-      CLIENT_PATH,
-    )
+    const clientBody = body
+      .replaceAll(`${UPSTREAM_ORIGIN}${UPSTREAM_PATH}`, CLIENT_PATH)
+      .replaceAll(IMAGE_ORIGIN, IMAGE_PATH)
 
     response.setHeader('Content-Type', 'application/javascript; charset=utf-8')
     response.setHeader('Cache-Control', 'public, s-maxage=900, stale-while-revalidate=60')

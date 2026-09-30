@@ -95,7 +95,7 @@ npm run preview   # Preview the production build locally
 
 ## eBay listings widget
 
-The live listing feed is mounted client-side in `EbayWidget` inside `src/App.jsx`. The browser requests the feed through the same-origin Vercel function at `api/listings.js`, which avoids common browser content blockers while keeping the provider's live content and disclosure. It uses:
+The live listing feed is mounted client-side in `EbayWidget` inside `src/App.jsx`. The browser requests the feed through the same-origin Vercel functions at `api/listings.js` and `api/listing-image.js`, which avoid common browser content blockers while keeping the provider's live content and disclosure. It uses:
 
 - eBay user: `poke_otter`
 - eBay site: `EBAY-GB`
@@ -103,7 +103,7 @@ The live listing feed is mounted client-side in `EbayWidget` inside `src/App.jsx
 - Maximum items: 100
 - Provider: Auction Nudge
 
-The external script writes into the single `auction-nudge-items` element and injects its own markup and styles. Do not add a second listings widget to the page. The provider warns that duplicate instances of the same widget can stop both widgets from loading. The proxy is restricted to the Auction Nudge item feed and caches responses for 15 minutes.
+The external script writes into the single `auction-nudge-items` element and injects its own markup and styles. Do not add a second listings widget to the page. The provider warns that duplicate instances of the same widget can stop both widgets from loading. The feed proxy is restricted to the Auction Nudge item feed and caches responses for 15 minutes; the image proxy is restricted to eBay image paths and caches images for one year.
 
 The widget is third-party content and may be affected by network failures or ad blockers. The page therefore includes direct links to the full eBay shop as fallbacks. Listing prices, availability, feedback, and shipping details must remain live on eBay rather than being copied into static page content.
 
