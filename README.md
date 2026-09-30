@@ -6,7 +6,7 @@ The site is intentionally static. There is no application server, database, auth
 
 ## Features
 
-- Live eBay listings loaded from the Free Seller Tools widget.
+- Live eBay listings loaded from the Auction Nudge widget.
 - Up to 100 active listings in a responsive grid.
 - Four-column desktop, three-column tablet, and two-column mobile layouts.
 - Raw and graded card positioning.
@@ -14,7 +14,8 @@ The site is intentionally static. There is no application server, database, auth
 - Royal Mail and eBay checkout information.
 - FAQ and Formspree-ready contact form.
 - Responsive layout with reduced-motion support.
-- Basic title, description, Open Graph, favicon, and theme-color metadata.
+- Prerendered homepage HTML for search crawlers and fast first paint.
+- Canonical URL, sitemap, robots directive, Open Graph, Twitter card, and JSON-LD metadata.
 
 ## Stack
 
@@ -23,7 +24,7 @@ The site is intentionally static. There is no application server, database, auth
 - JavaScript with JSX
 - Plain CSS with CSS custom properties and responsive media queries
 - Vercel-compatible static build
-- Free Seller Tools eBay Listings Widget
+- Auction Nudge eBay Listings Widget
 - Formspree for contact-form delivery
 
 Node 22 is the recommended runtime. The Vite version currently used by this project requires Node `^20.19.0` or `>=22.12.0`.
@@ -34,11 +35,15 @@ Node 22 is the recommended runtime. The Vite version currently used by this proj
 .
 ├── public/
 │   ├── poke_otter.jpg       # Shop mascot and favicon/social image
-│   └── robots.txt           # Basic crawler instructions
+│   ├── robots.txt           # Crawler instructions and sitemap location
+│   └── sitemap.xml          # Indexable site URLs
 ├── src/
 │   ├── App.jsx              # Page sections, widget, and contact form
+│   ├── entry-server.jsx     # Static prerender entry point
 │   ├── main.jsx             # React entry point
 │   └── styles.css           # Complete visual system and responsive styles
+├── scripts/
+│   └── prerender.mjs        # Injects rendered React HTML into dist/index.html
 ├── .env.example             # Environment variable template
 ├── .nvmrc                   # Recommended Node major version
 ├── index.html               # Document shell and SEO metadata
@@ -89,9 +94,9 @@ The live listing feed is mounted client-side in `EbayWidget` inside `src/App.jsx
 - eBay site: `EBAY-GB`
 - Layout: grid
 - Maximum items: 100
-- Provider: Free Seller Tools
+- Provider: Auction Nudge
 
-The external script writes into the single `fst_listings` element and injects its own markup and styles. Do not add a second listings widget to the page. The provider warns that duplicate instances of the same widget can stop both widgets from loading.
+The external script writes into the single `auction-nudge-items` element and injects its own markup and styles. Do not add a second listings widget to the page. The provider warns that duplicate instances of the same widget can stop both widgets from loading.
 
 The widget is third-party content and may be affected by network failures or ad blockers. The page therefore includes direct links to the full eBay shop as fallbacks. Listing prices, availability, feedback, and shipping details must remain live on eBay rather than being copied into static page content.
 
@@ -100,9 +105,9 @@ The widget is third-party content and may be affected by network failures or ad 
 1. Import the repository into Vercel.
 2. Keep the framework preset as Vite, or use the detected defaults.
 3. Set the `VITE_FORMSPREE_ENDPOINT` environment variable.
-4. Deploy with the default build command `npm run build` and output directory `dist`.
+4. Deploy with the build command `npm run build` and output directory `dist`.
 
-No `vercel.json` is required for this static Vite site. Connect the future subdomain from the Vercel project domain settings when it is available.
+No `vercel.json` is required for this static Vite site. The canonical production URL is `https://pokeotter.jaamour.com/`.
 
 ## Content maintenance
 

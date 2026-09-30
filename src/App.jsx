@@ -187,9 +187,9 @@ function App() {
         <section className="hero-section">
           <div className="hero-copy">
             <p className="eyebrow eyebrow--light"><span className="eyebrow-dot" /> eBay UK only</p>
-            <h1>Find your next favourite card.</h1>
+            <h1>Pokemon cards for UK collectors.</h1>
             <p className="hero-intro">
-              Fresh pulls, graded grails, and otterly good finds for Pokemon collectors. Browse the live shop and check out securely through eBay UK.
+              Shop pack-fresh Pokemon singles, raw cards, and graded collector finds from Poke Otter. Browse live listings and check out securely through eBay UK.
             </p>
             <div className="hero-actions">
               <a className="button button--cream" href="#shop">Browse latest cards <ArrowDown /></a>
@@ -232,12 +232,12 @@ function App() {
           <div className="section care-intro">
             <div className="care-art">
               <div className="care-label">THE OTTER<br />STANDARD</div>
-              <img src="/poke_otter.jpg" alt="Poke Otter mascot" />
+              <img src="/poke_otter.jpg" alt="Poke Otter mascot" width="960" height="960" loading="lazy" />
             </div>
             <div className="care-copy">
               <p className="eyebrow"><span className="eyebrow-dot" /> A little about the shop</p>
               <h2>Good cards deserve good care.</h2>
-              <p>Every raw card listed by Poke Otter is pack-fresh, pulled by me, and immediately sleeved. Alongside fresh pulls, you will find graded cards for collectors who like their favourites protected and ready for display.</p>
+              <p>Every raw Pokemon card listed by Poke Otter is pack-fresh, pulled by me, and immediately sleeved. Alongside fresh pulls, you will find graded cards for collectors who like their favourites protected and ready for display.</p>
               <a className="text-link" href={EBAY_URL} target="_blank" rel="noreferrer">Meet the shop on eBay <ArrowUpRight /></a>
             </div>
           </div>
@@ -266,7 +266,7 @@ function App() {
         <section className="section process-section">
           <div className="section-heading section-heading--centered">
             <p className="eyebrow"><span className="eyebrow-dot" /> Simple as a Pokeball</p>
-            <h2>Find it. Love it. Add to basket.</h2>
+            <h2>Buy Pokemon cards from a UK seller.</h2>
           </div>
           <div className="process-grid">
             <div className="process-step"><span>01</span><h3>Browse</h3><p>Explore the live listings and find a card that catches your eye.</p></div>
@@ -279,7 +279,7 @@ function App() {
           <div className="section faq-layout">
             <div className="faq-heading">
               <p className="eyebrow eyebrow--light"><span className="eyebrow-dot" /> Questions, answered</p>
-              <h2>Before you make room in the binder.</h2>
+              <h2>Questions about buying Pokemon cards?</h2>
               <p>Need something more specific? Send a message and ask about a card, a listing, or an order.</p>
               <a className="button button--cream" href="#contact">Ask a question <ArrowDown /></a>
             </div>
@@ -328,7 +328,7 @@ function App() {
           <a href="#faq">FAQ</a>
         </div>
         <div className="footer-bottom">
-          <span>Pokemon is a trademark of its respective owners. Poke Otter is an independent seller.</span>
+          <span>Pokemon is a trademark of its respective owners. Poke Otter is an independent seller and is not affiliated with eBay, Nintendo, The Pokemon Company, or Game Freak.</span>
           <span>© {new Date().getFullYear()} Poke Otter</span>
         </div>
       </footer>
