@@ -78,3 +78,20 @@ Before considering work complete:
 3. Check the rendered page at desktop and mobile sizes when UI changes are involved.
 4. Confirm eBay links, widget loading, FAQ behavior, and contact-form states.
 5. Do not commit secrets, generated `dist/`, or `node_modules/`.
+
+## Learned User Preferences
+
+- Keep the primary navigation focused on Home and place supporting SEO/content pages in the footer.
+- Preserve correct image aspect ratios on content pages and in the about section; do not accept visibly squished card or mascot images.
+- Use concise, collector-focused copy and avoid adding punctuation or shipping claims the seller did not request.
+
+## Learned Workspace Facts
+
+- Treat `https://pokeotter.jaamour.com/` as the live custom-domain deployment; Vercel uses the standard Vite build without a custom configuration file.
+- Keep the proprietary license and intentionally omit contributing and security policy files unless explicitly requested.
+- Preserve the Google Analytics 4 integration in `index.html` using measurement ID `G-0BKBBM7QJT`.
+- Preserve the `ebay_shop_click` analytics event when changing outbound eBay links or tracking code.
+- Keep stale-load protection around the Auction Nudge script because React StrictMode can let an earlier widget callback incorrectly replace a successful feed with the error fallback.
+- Treat an empty or fallback eBay feed as potentially caused by an ad blocker blocking `auctionnudge.com`, after checking the widget script and callbacks.
+- Use the confirmed postage FAQ wording: cards worth about £1 use second-class Royal Mail, while raw cards over £10 and graded cards use eBay Simple Delivery with protection and first-class tracked Royal Mail.
+- Keep the current content terminology: use “Raw Pokemon Cards,” say raw cards were pulled by us, and omit “Royal Mail” from the hero and promotional banner when those concise labels are used.
